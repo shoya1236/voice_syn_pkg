@@ -20,10 +20,10 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'speech_to_text = voice_syn.speech_to_text:main',
-            'chatgpt_node = voice_syn.chatgpt_node:main',
-            'voicevox_node = voice_syn.voicevox_node:main',
-            'audio_playback_node = voice_syn.audio_playback_node:main',
+            'speech_to_text = voice_syn_pkg.speech_to_text:main',
+            'chatgpt_node = voice_syn_pkg.chatgpt_node:main',
+            'voicevox_node = voice_syn_pkg.voicevox_node:main',
+            'audio_playback_node = voice_syn_pkg.audio_playback_node:main',
         ],
     },
 )
