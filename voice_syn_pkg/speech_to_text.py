@@ -32,15 +32,15 @@ class SpeechToTextNode(Node):
             frames.append(data)
         self.stream.stop_stream()
 
-        # 音声データを一時的な WAV ファイルに保存
-        with wave.open('temp.wav', 'wb') as wf:
+        # 音声データを output.wav に保存
+        with wave.open('output.wav', 'wb') as wf:
             wf.setnchannels(self.channels)
             wf.setsampwidth(self.audio.get_sample_size(self.sample_format))
             wf.setframerate(self.fs)
             wf.writeframes(b''.join(frames))
 
         # Whisper で音声認識
-        result = self.whisper_model.transcribe('temp.wav')
+        result = self.whisper_model.transcribe('output.wav')
         recognized_text = result['text']
         
         # テキストを ROS トピックで送信

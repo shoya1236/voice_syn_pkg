@@ -11,7 +11,7 @@ setup(
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
     ],
-    install_requires=['setuptools'],
+    install_requires=['setuptools', 'rclpy', 'std_msgs', 'openai', 'requests'],
     zip_safe=True,
     maintainer='shoya',
     maintainer_email='shoya.yam@gmail.com',
@@ -24,6 +24,7 @@ setup(
             'chatgpt_node = voice_syn_pkg.chatgpt_node:main',
             'voicevox_node = voice_syn_pkg.voicevox_node:main',
             'audio_playback_node = voice_syn_pkg.audio_playback_node:main',
+            'text_input_node = voice_syn_pkg.text_input_node:main',
         ],
     },
 )

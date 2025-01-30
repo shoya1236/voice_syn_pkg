@@ -2,6 +2,7 @@ import rclpy
 from rclpy.node import Node
 import wave
 import pyaudio
+import os
 
 class AudioPlaybackNode(Node):
     def __init__(self):
@@ -27,7 +28,13 @@ class AudioPlaybackNode(Node):
 def main(args=None):
     rclpy.init(args=args)
     audio_playback_node = AudioPlaybackNode()
-    audio_playback_node.play_audio('output.wav')
+
+    file_path = os.path.expanduser("~/voice_syn_ws/output.wav")
+    if not os.path.exists(file_path):
+        audio_playback_node.get_logger().error(f"Audio file not found: {file_path}")
+        return
+
+    audio_playback_node.play_audio(file_path)
     rclpy.spin(audio_playback_node)
 
 if __name__ == '__main__':
