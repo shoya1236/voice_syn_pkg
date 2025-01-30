@@ -21,12 +21,12 @@ class ChatGPTNode(Node):
         self.get_logger().info(f"Received text: {recognized_text}")
 
         # ChatGPT に問い合わせて応答を生成
-        response = openai.Completion.create(
-            engine="text-davinci-003",
-            prompt=recognized_text,
+        response = openai.chat_completions.create(
+            model="gpt-3.5-turbo",
+            messages=[{"role": "user", "content": recognized_text}],
             max_tokens=150
         )
-        generated_response = response.choices[0].text.strip()
+        generated_response = response['choices'][0]['message']['content'].strip()
 
         # 応答を ROS トピックで送信
         msg = String()
